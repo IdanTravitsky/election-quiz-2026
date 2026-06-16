@@ -450,6 +450,27 @@
       .cover-cta:active {
         transform: translateX(-50%) scale(0.97);
       }
+      .resume-btn {
+        position: absolute;
+        left: 50%;
+        top: 734px;
+        transform: translateX(-50%);
+        background: #fff;
+        color: var(--blue-dark);
+        border: 2px solid var(--blue);
+        border-radius: 7px;
+        padding: 9px 24px;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 22px;
+        cursor: pointer;
+        white-space: nowrap;
+        box-shadow: 0 4px 14px rgba(6, 107, 237, 0.18);
+        z-index: 6;
+      }
+      .resume-btn:hover {
+        background: #eef5ff;
+      }
       .cover-cta .chev {
         font-size: 26px;
         line-height: 1;
@@ -512,6 +533,177 @@
       /* Detail backdrop: shown only when the popup is open (JS-toggled). */
       .detail-backdrop.open {
         display: block;
+      }
+      .compass-backdrop {
+        background: rgba(12, 28, 56, 0.45);
+      }
+      .compass-backdrop.open {
+        display: block;
+      }
+
+      /* Political compass — FAB + modal + plotted markers. */
+      .compass-fab {
+        position: fixed;
+        left: 50%;
+        bottom: 22px;
+        transform: translateX(-50%);
+        display: none;
+        align-items: center;
+        gap: 8px;
+        background: var(--blue);
+        color: #fff;
+        border: none;
+        border-radius: 999px;
+        padding: 12px 26px;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 6px 20px rgba(6, 107, 237, 0.35);
+        z-index: 7;
+      }
+      .compass-fab:hover {
+        filter: brightness(1.07);
+      }
+      body[data-screen="detail"] .compass-fab {
+        display: inline-flex;
+      }
+      .compass-modal {
+        gap: 12px !important;
+        padding: 56px 48px 40px !important;
+      }
+      .compass-sub {
+        margin: 0;
+        color: #5a6b86;
+        font-size: 20px;
+        font-family: var(--font-body);
+        text-align: center;
+      }
+      .compass-note {
+        margin: 0;
+        max-width: 560px;
+        color: #8aa0bf;
+        font-size: 15px;
+        line-height: 1.5;
+        font-family: var(--font-body);
+        text-align: center;
+      }
+      .compass {
+        position: relative;
+        width: min(560px, 78vw);
+        aspect-ratio: 1;
+        margin: 4px auto;
+        border-radius: 14px;
+        background: #f6f9ff;
+        border: 2px solid #d6e3f7;
+      }
+      .cx-grid {
+        position: absolute;
+        background: #cdd9ee;
+      }
+      .cx-vline {
+        left: 50%;
+        top: 5%;
+        bottom: 5%;
+        width: 2px;
+        transform: translateX(-50%);
+      }
+      .cx-hline {
+        top: 50%;
+        left: 5%;
+        right: 5%;
+        height: 2px;
+        transform: translateY(-50%);
+      }
+      .cx-axis {
+        position: absolute;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 16px;
+        color: #5a6b86;
+        white-space: nowrap;
+        pointer-events: none;
+      }
+      .cx-top {
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .cx-bottom {
+        bottom: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .cx-right {
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .cx-left {
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .cx-party {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .cx-party img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .cx-party i {
+        font-size: 9px;
+        font-style: normal;
+        font-weight: 700;
+        color: #333;
+        text-align: center;
+        line-height: 1;
+        padding: 1px;
+      }
+      .cx-party.is-top {
+        outline: 3px solid var(--blue);
+        width: 36px;
+        height: 36px;
+        z-index: 3;
+      }
+      .cx-user {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        z-index: 5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        pointer-events: none;
+      }
+      .cx-user-dot {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--yellow);
+        border: 3px solid #084a9e;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      .cx-user-lbl {
+        margin-top: 2px;
+        background: #084a9e;
+        color: #fff;
+        font-family: var(--font-body);
+        font-weight: 800;
+        font-size: 13px;
+        padding: 1px 7px;
+        border-radius: 6px;
+        white-space: nowrap;
       }
 
       /* Rules modal — Figma 123:3650 (desktop) + 123:3664 (mobile).
@@ -722,10 +914,26 @@
         animation: pop 0.35s ease both;
       }
       .q-actions {
-        width: 695px;
+        width: 640px;
         display: flex;
-        gap: 36px;
-        direction: ltr; /* keep red→blue→green physical order (matches Figma) */
+        flex-direction: column;
+        gap: 13px;
+        direction: rtl;
+      }
+      .q-skip {
+        margin-top: 10px;
+        background: transparent;
+        border: none;
+        color: #8aa0bf;
+        font-family: var(--font-body);
+        font-size: 23px;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .q-skip:hover {
+        color: var(--blue-dark);
       }
       /* Bottom share row for the question screen (Figma 123:1421 / 123:1473). */
       .q-share {
@@ -759,41 +967,56 @@
         height: 100%;
       }
       .q-btn {
-        flex: 1 1 0;
-        height: 72px;
+        flex: 0 0 auto;
+        width: 100%;
+        height: 62px;
         border: none;
         border-radius: 9.7px;
         color: #fff;
         font-family: var(--font-body);
         font-weight: 600;
-        font-size: 30px;
+        font-size: 28px;
         cursor: pointer;
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        gap: 14px;
         transition:
           transform 0.15s,
           filter 0.2s,
           box-shadow 0.2s;
       }
+      .q-btn b {
+        font-weight: 800;
+        font-size: 19px;
+        opacity: 0.65;
+        min-width: 1.3em;
+        text-align: center;
+      }
       .q-btn:hover {
-        transform: translateY(-3px);
-        filter: brightness(1.07);
+        transform: translateY(-2px);
+        filter: brightness(1.06);
       }
       .q-btn:active {
-        transform: scale(0.97);
+        transform: scale(0.985);
       }
-      .q-btn.agree {
+      /* 5-point gradient: green (agree) → blue-grey (neutral) → red (oppose) */
+      .q-btn.lvl-sa {
         background: var(--green);
         box-shadow: 2px 5px 6px rgba(54, 124, 8, 0.3);
       }
-      .q-btn.neutral {
-        background: var(--neutral);
-        box-shadow: 2px 5px 6px rgba(130, 179, 213, 0.3);
+      .q-btn.lvl-a {
+        background: #5cb874;
       }
-      .q-btn.disagree {
+      .q-btn.lvl-n {
+        background: var(--neutral);
+      }
+      .q-btn.lvl-d {
+        background: #e0905f;
+      }
+      .q-btn.lvl-sd {
         background: var(--red);
-        box-shadow: 2px 5px 6px rgba(221, 95, 95, 0.6);
+        box-shadow: 2px 5px 6px rgba(221, 95, 95, 0.5);
       }
 
       .r-title {
@@ -1563,6 +1786,13 @@
           font-size: 28px !important;
           margin-top: 24px !important;
         }
+        .resume-btn {
+          position: static !important;
+          transform: none !important;
+          margin: 16px auto 0 !important;
+          font-size: 17px !important;
+          padding: 8px 18px !important;
+        }
 
         /* The problematic share & footer */
         .cover-share {
@@ -1625,17 +1855,24 @@
         }
         .q-actions {
           width: 100% !important;
-          gap: 8px !important;
-          direction: ltr;
+          flex-direction: column !important;
+          gap: 9px !important;
+          direction: rtl;
         }
         .q-btn {
-          flex: 1 1 0;
+          flex: 0 0 auto;
+          width: 100%;
           min-width: 0;
-          min-height: 52px;
-          font-size: clamp(18px, 5.6vw, 24px);
-          padding: 10px 4px;
+          height: auto;
+          min-height: 50px;
+          font-size: clamp(18px, 5.2vw, 23px);
+          padding: 10px 12px;
           font-weight: 600;
           border-radius: 9.69px;
+        }
+        .q-skip {
+          font-size: clamp(15px, 4.4vw, 19px);
+          margin-top: 6px;
         }
 
         .q-share {
@@ -1916,6 +2153,16 @@
             <span>התחל</span>
             <span class="chev">‹</span>
           </button>
+          <!-- Resume / last-result entry point — shown only when localStorage
+               holds a saved run (see maybeShowResume). -->
+          <button
+            id="resume-btn"
+            class="resume-btn"
+            type="button"
+            style="display: none"
+          >
+            המשך מהמקום שעצרת ›
+          </button>
           <!-- Bottom share row (Figma 123:1175 mobile / 120:796 desktop). -->
           <div
             class="cover-share social"
@@ -2014,17 +2261,16 @@
           </div>
           <div class="q-body">
             <h4 class="q-statement" id="q-statement">…</h4>
-            <div class="q-actions">
-              <!-- DOM order (LTR within container): red→blue→green = Figma's physical order -->
-              <button class="q-btn disagree" onclick="answer('disagree')">
-                לא
-              </button>
-              <button class="q-btn neutral" onclick="answer('neutral')">
-                לא יודע
-              </button>
-              <button class="q-btn agree" onclick="answer('agree')">כן</button>
+            <div class="q-actions" role="group" aria-label="מידת ההסכמה שלך">
+              <!-- 5-point Likert scale (RTL: strongly-agree on the right). -->
+              <button class="q-btn lvl lvl-sa" onclick="answer('sa')"><b>1</b><span>מסכים מאוד</span></button>
+              <button class="q-btn lvl lvl-a" onclick="answer('a')"><b>2</b><span>מסכים</span></button>
+              <button class="q-btn lvl lvl-n" onclick="answer('n')"><b>3</b><span>ניטרלי</span></button>
+              <button class="q-btn lvl lvl-d" onclick="answer('d')"><b>4</b><span>מתנגד</span></button>
+              <button class="q-btn lvl lvl-sd" onclick="answer('sd')"><b>5</b><span>מתנגד מאוד</span></button>
             </div>
-            <p class="q-keyhint" aria-hidden="true">טיפ: אפשר לענות גם במקלדת — <b>1</b> כן · <b>2</b> לא יודע · <b>3</b> לא · <b>⌫</b> חזרה</p>
+            <button class="q-skip" onclick="answer('skip')">לא יודע / דלג על השאלה</button>
+            <p class="q-keyhint" aria-hidden="true">טיפ: במקלדת — <b>1</b>–<b>5</b> לפי מידת ההסכמה · <b>0</b> לא יודע · <b>⌫</b> חזרה</p>
           </div>
           <!-- Bottom share row — Figma 123:1473 (mobile) + 123:1421 (desktop). -->
           <div class="q-share" role="group" aria-label="שתפו את המשחק">
@@ -2221,6 +2467,39 @@
       </div>
     </div>
 
+    <!-- Political-compass entry point — fixed FAB shown only on the results
+         screen (body[data-screen="detail"]), opens the compass modal. -->
+    <button
+      class="compass-fab"
+      id="compass-fab"
+      type="button"
+      onclick="openCompass()"
+    >
+      🧭 מפת העמדות שלכם
+    </button>
+    <div
+      class="modal-backdrop compass-backdrop"
+      id="compass-backdrop"
+      onclick="closeCompass()"
+      aria-hidden="true"
+    ></div>
+    <div class="detail-modal-wrap compass-modal-wrap" id="compass-wrap">
+      <div class="detail-modal compass-modal" onclick="event.stopPropagation()">
+        <button
+          class="close"
+          onclick="closeCompass()"
+          aria-label="סגור"
+        ></button>
+        <h3>מפת העמדות שלכם</h3>
+        <p class="compass-sub">איפה אתם והמפלגות על שני צירים מרכזיים</p>
+        <div class="compass" id="compass"></div>
+        <p class="compass-note">
+          הצירים מחושבים מעמדות המפלגות בנושאי ביטחון ומדיניות חוץ (ימין↔שמאל)
+          ודת ומדינה (דתי↔חילוני). הערכה ויזואלית בלבד.
+        </p>
+      </div>
+    </div>
+
     <div id="toast" class="toast">הקישור הועתק</div>
 
     <script>
@@ -2319,6 +2598,15 @@
         history: [],
       };
 
+      // 5-point Likert → evenly-spaced positions on the 1..10 stance axis.
+      const LEVELS = { sa: 10, a: 7.75, n: 5.5, d: 3.25, sd: 1 };
+      // Compact answer encoding (canonical-index string) for share + resume.
+      // Index in ENC == the digit used per question; 0 == skip/abstain.
+      const ENC = ["skip", "sa", "a", "n", "d", "sd"];
+      // 1..5 keys answer by agreement; 0 abstains.
+      const KEYMAP = { 1: "sa", 2: "a", 3: "n", 4: "d", 5: "sd", 0: "skip" };
+      const LS_KEY = "election-quiz-2026.v1";
+
       function go(id) {
         state.screen = id;
         document.body.dataset.screen = id;
@@ -2364,11 +2652,13 @@
           alert(msg);
           return;
         }
+        clearSaved(); // fresh run supersedes any earlier in-progress/result save
         state.selected = pickQuestions();
         state.current = 0;
         state.totals = {};
         state.history = [];
         document.getElementById("q-total").textContent = SETTINGS.numQuestions;
+        saveProgress();
         // GA4 funnel step 2 (after view): user committed to start.
         // Looker derives bounce-rate as 1 - started/view.
         if (typeof gtag === "function") {
@@ -2392,6 +2682,7 @@
           for (const p in h.delta)
             state.totals[p] = (state.totals[p] || 0) - h.delta[p];
         }
+        saveProgress();
         renderQuestion();
       }
 
@@ -2416,31 +2707,164 @@
       function answer(type) {
         const q = state.selected[state.current];
         if (!q) return; // late click during the post-last-answer transition
-        const w = q.weight ?? 1;
-        if (type === "neutral") {
-          // "לא יודע" = true abstention: contributes nothing and is excluded
-          // from every party's denominator (see partyPct). A skip cannot
-          // reorder any two parties — results come only from answered questions.
-          state.history.push({ type: "neutral", __skip: true });
+        if (type === "skip") {
+          // "לא יודע / דלג" = true abstention: contributes nothing and is
+          // excluded from every party's denominator (see partyPct). A skip
+          // cannot reorder any two parties — results come only from answers.
+          state.history.push({ type: "skip", __skip: true });
         } else {
-          // Symmetric, monotonic closeness on the 1..10 axis: "כן" = user-position
-          // 10, "לא" = 1. Replaces the original's non-monotonic 9/2 softening,
-          // under which a near-match party could outrank a perfect match.
-          const userPos = type === "agree" ? 10 : 1;
-          const delta = {};
-          for (const party in q.scores) {
-            const v = (10 - Math.abs(userPos - q.scores[party])) * w;
-            delta[party] = v;
-            state.totals[party] = (state.totals[party] || 0) + v;
-          }
-          state.history.push({ type, delta }); // store answer for the detail breakdown
+          // Symmetric, monotonic closeness on the 1..10 axis. The 5-point
+          // scale maps to evenly-spaced positions (10/7.75/5.5/3.25/1) so a
+          // "מסכים" is genuinely closer to a party scored 8 than a "מסכים מאוד"
+          // would be to one scored 6 — nuance the old binary couldn't express.
+          state.history.push(scoreAnswer(q, type)); // {type, delta}
         }
         trackQuizAnswer(q, type);
         state.current++;
+        saveProgress();
         if (state.current >= state.selected.length) {
           setTimeout(showResults, 250);
         } else {
           renderQuestion();
+        }
+      }
+
+      // Compute (and apply to running totals) one question's per-party deltas
+      // for a given Likert level. Returns the history entry {type, delta}.
+      function scoreAnswer(q, type) {
+        const w = q.weight ?? 1;
+        const userPos = LEVELS[type];
+        const delta = {};
+        for (const party in q.scores) {
+          const v = (10 - Math.abs(userPos - q.scores[party])) * w;
+          delta[party] = v;
+          state.totals[party] = (state.totals[party] || 0) + v;
+        }
+        return { type, delta };
+      }
+
+      // ---- answer encoding (canonical-index string) — powers share + resume ----
+      // One char per question in QUESTIONS order; char = ENC index (0 == skip).
+      // Order-independent: results depend only on which answer each question got.
+      function encodeAnswers() {
+        const code = new Array(QUESTIONS.length).fill("0");
+        state.selected.forEach((q, i) => {
+          const h = state.history[i];
+          if (!h) return;
+          const t = h.__skip ? "skip" : h.type;
+          const qi = QUESTIONS.indexOf(q);
+          const di = ENC.indexOf(t);
+          if (qi >= 0 && di >= 0) code[qi] = String(di);
+        });
+        return code.join("");
+      }
+
+      // Rebuild full state (selected/history/totals) from an answer code so a
+      // shared link reproduces the exact same ranking + compass.
+      function applyAnswerCode(code) {
+        state.selected = QUESTIONS.slice();
+        state.totals = {};
+        state.history = QUESTIONS.map((q, i) => {
+          const t = ENC[Number(code[i])] || "skip";
+          if (t === "skip") return { type: "skip", __skip: true };
+          return scoreAnswer(q, t);
+        });
+        state.current = QUESTIONS.length;
+      }
+
+      // ---- save & resume (localStorage) ----
+      function clearSaved() {
+        try {
+          localStorage.removeItem(LS_KEY);
+        } catch (_) {}
+        const btn = document.getElementById("resume-btn");
+        if (btn) btn.style.display = "none";
+      }
+      function loadSaved() {
+        try {
+          return JSON.parse(localStorage.getItem(LS_KEY));
+        } catch (_) {
+          return null;
+        }
+      }
+      function saveProgress() {
+        try {
+          const done =
+            state.selected.length > 0 &&
+            state.current >= state.selected.length;
+          if (done) {
+            localStorage.setItem(
+              LS_KEY,
+              JSON.stringify({ done: true, code: encodeAnswers() }),
+            );
+          } else if (state.selected.length) {
+            localStorage.setItem(
+              LS_KEY,
+              JSON.stringify({
+                done: false,
+                order: state.selected.map((q) => QUESTIONS.indexOf(q)),
+                ans: state.history.map((h) =>
+                  h ? (h.__skip ? 0 : ENC.indexOf(h.type)) : 0,
+                ),
+                current: state.current,
+              }),
+            );
+          }
+        } catch (_) {}
+      }
+
+      // Continue an unfinished quiz (replays saved answers, then drops the user
+      // back on the next unanswered question).
+      function resumeQuiz() {
+        const s = loadSaved();
+        if (!s || s.done || !Array.isArray(s.order)) return;
+        state.selected = s.order.map((qi) => QUESTIONS[qi]).filter(Boolean);
+        state.totals = {};
+        state.history = [];
+        (s.ans || []).forEach((d, i) => {
+          const q = state.selected[i];
+          if (!q) return;
+          const t = ENC[d] || "skip";
+          state.history.push(
+            t === "skip" ? { type: "skip", __skip: true } : scoreAnswer(q, t),
+          );
+        });
+        state.current = Math.min(
+          s.current ?? state.history.length,
+          state.selected.length,
+        );
+        document.getElementById("q-total").textContent = SETTINGS.numQuestions;
+        if (state.current >= state.selected.length) {
+          showResults();
+        } else {
+          renderQuestion();
+          go("question");
+        }
+      }
+
+      // On the cover, surface a resume/last-result entry point if one is saved.
+      function maybeShowResume() {
+        const btn = document.getElementById("resume-btn");
+        if (!btn) return;
+        const s = loadSaved();
+        if (!s) {
+          btn.style.display = "none";
+          return;
+        }
+        if (s.done && s.code) {
+          btn.textContent = "לתוצאה האחרונה שלי ›";
+          btn.onclick = () => {
+            applyAnswerCode(s.code);
+            showResults();
+          };
+          btn.style.display = "";
+        } else if (Array.isArray(s.order)) {
+          const answered = (s.current ?? 0) + 1;
+          btn.textContent = `המשך מהמקום שעצרת (שאלה ${Math.min(answered, s.order.length)}) ›`;
+          btn.onclick = resumeQuiz;
+          btn.style.display = "";
+        } else {
+          btn.style.display = "none";
         }
       }
 
@@ -2453,8 +2877,7 @@
       // the first 98 chars + "..".
       function trackQuizAnswer(q, type) {
         if (typeof gtag !== "function") return;
-        const answerLabel =
-          type === "agree" ? "כן" : type === "disagree" ? "לא" : "לא יודע";
+        const answerLabel = ANSWER_LABEL[type] || "לא יודע";
         let text = q.statement || "";
         if (text.length > 100) text = text.slice(0, 98) + "..";
         gtag("event", "elections_quiz_2026_answer", {
@@ -2501,6 +2924,11 @@
         state.totals = {};
         state.history = [];
         state.selected = [];
+        clearSaved();
+        if (location.hash) {
+          // Drop a shared #r= (or debug) hash without triggering a re-route.
+          history.replaceState(null, "", location.pathname + location.search);
+        }
         go("cover");
       }
 
@@ -2599,9 +3027,20 @@
         document.querySelectorAll("a.share-btn").forEach((a) => {
           const platform = a.dataset.platform;
           const mode = a.dataset.mode || "invite";
-          const href = buildShareUrl(platform, shareCopy(mode), SHARE_URL);
+          // Result-mode links carry the answer code so the recipient opens
+          // straight to the same ranking + compass.
+          const url =
+            mode === "result" && state.history.length
+              ? resultShareURL()
+              : SHARE_URL;
+          const href = buildShareUrl(platform, shareCopy(mode), url);
           if (href) a.href = href;
         });
+      }
+
+      // Base share URL + the encoded answers in the hash (strip any prior hash).
+      function resultShareURL() {
+        return SHARE_URL.split("#")[0] + "#r=" + encodeAnswers();
       }
 
       // iOS detection — covers iPhone/iPod/iPad incl. iPadOS reporting as Mac.
@@ -2859,7 +3298,14 @@
       }
 
       // ---- local build: per-party breakdown + match drivers for the modal ----
-      const ANSWER_LABEL = { agree: "כן", disagree: "לא", neutral: "לא יודע" };
+      const ANSWER_LABEL = {
+        sa: "מסכים מאוד",
+        a: "מסכים",
+        n: "ניטרלי",
+        d: "מתנגד",
+        sd: "מתנגד מאוד",
+        skip: "לא יודע",
+      };
 
       // Recover each answered (non-skip) question's fit (0..10) for a party,
       // plus the user's answer. fit = stored delta / weight, since the stored
@@ -2967,6 +3413,152 @@
         document.getElementById("d-backdrop").classList.remove("open");
       }
 
+      // ---- political compass (2 axes derived from the party-stance data) ----
+      // X = security & foreign policy, Y = religion & state. Each axis averages
+      // the relevant questions, but first aligns every question's polarity (some
+      // statements are worded in the opposite direction) by correlation sign, so
+      // the average is a real left/right position rather than noise. Orientation
+      // is then pinned with a known anchor party so labels are never inverted.
+      const AXIS_DEFS = {
+        x: {
+          cats: ["security", "foreign"],
+          anchor: "עוצמה יהודית", // must land on the positive (right) side
+          posLabel: "ימין ביטחוני",
+          negLabel: "שמאל מדיני",
+        },
+        y: {
+          cats: ["religion"],
+          anchor: "יהדות התורה", // must land on the positive (top) side
+          posLabel: "דתי",
+          negLabel: "חילוני",
+        },
+      };
+      function pearson(a, b) {
+        const n = a.length;
+        let ma = 0,
+          mb = 0;
+        for (let i = 0; i < n; i++) {
+          ma += a[i];
+          mb += b[i];
+        }
+        ma /= n;
+        mb /= n;
+        let num = 0,
+          da = 0,
+          db = 0;
+        for (let i = 0; i < n; i++) {
+          const x = a[i] - ma,
+            y = b[i] - mb;
+          num += x * y;
+          da += x * x;
+          db += y * y;
+        }
+        return da && db ? num / Math.sqrt(da * db) : 0;
+      }
+      let AXES_CACHE = null;
+      function buildAxes() {
+        const names = Object.keys(PARTIES);
+        const out = {};
+        for (const k in AXIS_DEFS) {
+          const def = AXIS_DEFS[k];
+          const qs = QUESTIONS.filter((q) => def.cats.includes(q.category));
+          if (!qs.length) {
+            out[k] = null;
+            continue;
+          }
+          const vecs = qs.map((q) => names.map((p) => q.scores[p] ?? 5.5));
+          const ref = vecs[0];
+          let signs = vecs.map((v) => (pearson(ref, v) >= 0 ? 1 : -1));
+          const aligned = (score, s) => (s > 0 ? score : 11 - score);
+          const norm = (v) => (v - 5.5) / 4.5; // 1..10 → −1..1
+          const partyVal = {};
+          names.forEach((p, pi) => {
+            let sum = 0;
+            qs.forEach((q, qi) => (sum += aligned(vecs[qi][pi], signs[qi])));
+            partyVal[p] = norm(sum / qs.length);
+          });
+          // Pin orientation: flip the whole axis if the anchor isn't positive.
+          if ((partyVal[def.anchor] ?? 0) < 0) {
+            signs = signs.map((s) => -s);
+            for (const p in partyVal) partyVal[p] = -partyVal[p];
+          }
+          out[k] = {
+            def,
+            partyVal,
+            // User position on this axis = same alignment over answered Qs.
+            userOf(qToPos) {
+              let sum = 0,
+                n = 0;
+              qs.forEach((q, qi) => {
+                if (qToPos.has(q)) {
+                  sum += aligned(qToPos.get(q), signs[qi]);
+                  n++;
+                }
+              });
+              return n ? norm(sum / n) : null;
+            },
+          };
+        }
+        return out;
+      }
+      function getAxes() {
+        return AXES_CACHE || (AXES_CACHE = buildAxes());
+      }
+      function userPositions() {
+        const m = new Map();
+        state.selected.forEach((q, i) => {
+          const h = state.history[i];
+          if (!h || h.__skip) return;
+          m.set(q, LEVELS[h.type]);
+        });
+        return m;
+      }
+      function renderCompass() {
+        const ax = getAxes();
+        const box = document.getElementById("compass");
+        if (!box || !ax.x || !ax.y) return;
+        const qpos = userPositions();
+        const ux = ax.x.userOf(qpos),
+          uy = ax.y.userOf(qpos);
+        const top = topMatchInfo();
+        const pct = (v) => ((v + 1) / 2) * 100; // −1..1 → 0..100
+        let html =
+          `<span class="cx-axis cx-top">${escapeHTML(ax.y.def.posLabel)}</span>` +
+          `<span class="cx-axis cx-bottom">${escapeHTML(ax.y.def.negLabel)}</span>` +
+          `<span class="cx-axis cx-right">${escapeHTML(ax.x.def.posLabel)}</span>` +
+          `<span class="cx-axis cx-left">${escapeHTML(ax.x.def.negLabel)}</span>` +
+          `<span class="cx-grid cx-vline"></span><span class="cx-grid cx-hline"></span>`;
+        Object.keys(PARTIES).forEach((p) => {
+          const x = ax.x.partyVal[p],
+            y = ax.y.partyVal[p];
+          if (x == null || y == null) return;
+          const info = PARTIES[p] || {};
+          const logo = info.logoOnWhite || info.logo;
+          const isTop = top && p === top.party;
+          html +=
+            `<span class="cx-party${isTop ? " is-top" : ""}" style="left:${pct(x)}%;top:${100 - pct(y)}%" title="${escapeHTML(p)}">` +
+            (logo
+              ? `<img src="${logo}" alt="${escapeHTML(p)}">`
+              : `<i>${escapeHTML(p)}</i>`) +
+            `</span>`;
+        });
+        if (ux != null && uy != null) {
+          html +=
+            `<span class="cx-user" style="left:${pct(ux)}%;top:${100 - pct(uy)}%" title="אתם">` +
+            `<span class="cx-user-dot"></span><span class="cx-user-lbl">אתם</span></span>`;
+        }
+        box.innerHTML = html;
+      }
+      function openCompass() {
+        renderCompass();
+        document.getElementById("compass-wrap").classList.add("open");
+        document.getElementById("compass-backdrop").classList.add("open");
+      }
+      function closeCompass() {
+        document.getElementById("compass-wrap").classList.remove("open");
+        document.getElementById("compass-backdrop").classList.remove("open");
+      }
+
       // Animate the ranking bars from 0% to their target width with staggered
       // delays. Skipped when the user prefers reduced motion (a11y). Called
       // on arrival to the results screen — runs once, no repeat on popup
@@ -3013,6 +3605,10 @@
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
           if (
+            document.getElementById("compass-wrap").classList.contains("open")
+          ) {
+            closeCompass();
+          } else if (
             document.getElementById("d-modal-wrap").classList.contains("open")
           ) {
             closeDetailModal();
@@ -3021,11 +3617,9 @@
           }
           return;
         }
-        // QOL: keyboard answering on the question screen (1/2/3) + Backspace to go back.
+        // QOL: keyboard answering on the question screen (1–5 + 0) + Backspace.
         if (state.screen !== "question") return;
-        if (e.key === "1") answer("agree");
-        else if (e.key === "2") answer("neutral");
-        else if (e.key === "3") answer("disagree");
+        if (e.key in KEYMAP) answer(KEYMAP[e.key]);
         else if (e.key === "Backspace") {
           e.preventDefault();
           goBack();
@@ -3037,6 +3631,18 @@
         if (!h) {
           // No hash → land on the cover and make sure body[data-screen]
           // is set so screen-specific CSS rules apply on first paint.
+          goCover();
+          return;
+        }
+        if (h.startsWith("r=")) {
+          // Shared result link: decode the answer code and show the ranking.
+          const code = h.slice(2).replace(/[^0-5]/g, "");
+          if (code.length) {
+            applyAnswerCode(code);
+            saveProgress();
+            showResults();
+            return;
+          }
           goCover();
           return;
         }
@@ -3216,6 +3822,8 @@
         updateShareLinks(); // populate <a.share-btn> hrefs
         rescale();
         applyHashRoute();
+        // If we landed on the cover (no special route), offer resume/last-result.
+        if (state.screen === "cover") maybeShowResume();
         postHeight();
         console.assert(
           QUESTIONS.length > 0,
