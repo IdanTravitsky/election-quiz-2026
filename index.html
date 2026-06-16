@@ -844,15 +844,13 @@
         font-weight: 800;
       }
       .q-category {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 239px;
+        position: relative;
         width: 138.5px;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 0;
+        flex: 0 0 auto;
       }
       .q-category .icon {
         width: 134px;
@@ -887,16 +885,22 @@
         justify-content: center;
         white-space: nowrap;
       }
+      /* Anchored as a centered flex region between the counter (top) and the
+         bottom margin, so category + statement + answers + skip + hint always
+         flow with gaps and can never overlap each other — no matter how long
+         the question or category label is. */
       .q-body {
         position: absolute;
-        top: 330px;
+        top: 205px;
+        bottom: 28px;
         left: 50%;
         transform: translateX(-50%);
         width: 1040px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 20px;
+        justify-content: center;
+        gap: 22px;
         z-index: 5;
       }
       .q-statement {
@@ -907,8 +911,8 @@
         font-weight: 700;
         line-height: 56px;
         min-height: calc(
-          56px * 3
-        ); /* reserve 3 lines so buttons start at a stable y */
+          56px * 2
+        ); /* reserve 2 lines so short questions don't jump the buttons */
         color: var(--text);
         overflow-wrap: break-word;
         animation: pop 0.35s ease both;
@@ -2254,12 +2258,12 @@
             שאלה <span id="q-num">1</span>/<span id="q-total">10</span>
           </div>
           <button id="q-back" class="q-back" type="button" onclick="goBack()" aria-label="חזרה לשאלה הקודמת">‹ הקודמת</button>
-          <div class="q-category">
-            <div class="icon" id="q-icon" aria-hidden="true"></div>
-            <div class="underline"></div>
-            <h3 class="chip" id="q-chip">דת ומדינה</h3>
-          </div>
           <div class="q-body">
+            <div class="q-category">
+              <div class="icon" id="q-icon" aria-hidden="true"></div>
+              <div class="underline"></div>
+              <h3 class="chip" id="q-chip">דת ומדינה</h3>
+            </div>
             <h4 class="q-statement" id="q-statement">…</h4>
             <div class="q-actions" role="group" aria-label="מידת ההסכמה שלך">
               <!-- 5-point Likert scale (RTL: strongly-agree on the right). -->
